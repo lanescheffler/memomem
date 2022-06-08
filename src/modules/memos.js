@@ -4,9 +4,10 @@ export const ON_LOGOUT = 'memos/ON_LOGOUT';
 export const ON_THREAD_ADD = 'memos/ON_MEMO_ADD';
 export const ON_THREAD_DELETE = 'memos/ON_THREAD_DELETE';
 export const ON_THREAD_SELECT = 'memos/ON_THREAD_SELECT';
+export const ON_THREAD_SELECT_TO_EDIT = 'memos/ON_THREAD_SELECT_TO_EDIT';
 export const ON_THREAD_EDIT = 'memos/ON_THREAD_EDIT';
 export const ON_THREAD_CHAT = 'memos/ON_THREAD_CHAT';
-
+export const ON_CHAT = 'memos/ON_CHAT'
 
 const initState = {
 
@@ -19,8 +20,9 @@ const initState = {
 
     threadList: [], //this is the memoInput & memoList, with a list of all chats,
     selectedThread: null,//message board - shows the messages ie Memos
-
-    memoList: [],
+    selectedThreadToEdit: null,
+    selectedPosts: null,
+    chatList: [],
 }
 
 export function reducer(state = initState, action) {
@@ -84,6 +86,16 @@ export function reducer(state = initState, action) {
                 threadList: state.threadList.filter(cThread => cThread.id !== action.thread.id)
             }
         case ON_THREAD_SELECT:
+            // if (state.currentUser !== action.thread.userCreated){
+            //     //if (!newUserCreated) {
+            //     alert('you did not create this thread')
+            //     return {...state}
+            // }
+            return {
+                ...state,
+                selectedThread: null
+            }
+        case ON_THREAD_SELECT_TO_EDIT:
             if (state.currentUser !== action.thread.userCreated){
                 //if (!newUserCreated) {
                 alert('you did not create this thread')
@@ -91,12 +103,12 @@ export function reducer(state = initState, action) {
             }
             return {
                 ...state,
-                selectedThread: action.thread
+                selectedThreadToEdit: action.thread
             }
         case ON_THREAD_EDIT:
             return {
                 ...state,
-                selectedThread: null,
+                selectedThreadToEdit: null,
                 threadList: state.threadList.map((thread) => {
                     if (action.thread.id === thread.id) {
                         return action.thread
@@ -105,8 +117,8 @@ export function reducer(state = initState, action) {
                     return thread
                 })
             }
+        //currently mimicking ON_SELECT_THREAD
         case ON_THREAD_CHAT:
-            console.log(action.memoList)
             console.log(action.thread.posts)
             if (state.currentUser !== action.thread.userCreated && state.currentUser !== action.thread.invitedUser){
                 //if (!newUserCreated) {
@@ -114,9 +126,20 @@ export function reducer(state = initState, action) {
                 return {...state}
             }
             return {
+                //returning the selected thread as thread.
                 ...state,
-                memoList: action.thread.posts
+                selectedThread: action.thread
             }
+        case ON_CHAT:
+            console.log(state.userList)
+            console.log(state.chatList)
+            return {
+                ...state,
+                chatList: [...state.chatList, action.message],
+
+            }
+
+
         default:
             return {
                 ...state

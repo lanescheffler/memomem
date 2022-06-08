@@ -9,7 +9,7 @@ export function Login() {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
 
-    const userList = useSelector(state => state.userList)
+    // const userList = useSelector(state => state.userList)
 
     function onSubmitLogin(e) {
         e.preventDefault();

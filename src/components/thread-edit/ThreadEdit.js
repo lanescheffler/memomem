@@ -4,7 +4,7 @@ import {ON_THREAD_EDIT} from "../../modules/memos";
 
 export function ThreadEdit({_ThreadInfo = ThreadInfo}) {
 
-    const thread = useSelector(state => state.selectedThread)
+    const thread = useSelector(state => state.selectedThreadToEdit)
 
     const dispatch = useDispatch();
     return <_ThreadInfo thread={thread} onSubmit={thread =>

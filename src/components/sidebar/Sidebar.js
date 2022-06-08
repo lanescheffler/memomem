@@ -43,7 +43,14 @@ export function ThreadInfo(props) {
         })
     }
 
-    function onDelete(event) {
+    function onPost(e) {
+        setFormState({
+            ...formState,
+            posts: e.target.value,
+        })
+    }
+
+    function onPrivate(event) {
         setFormState({
             ...formState,
             private: event.target.checked
@@ -53,10 +60,11 @@ export function ThreadInfo(props) {
     return <form onSubmit={onFormSubmit}>
         <input onChange={onTitleChange} value={formState.title} type={'text'} placeholder={"THREAD TITLE"}/>
         <input onChange={onInviteChange} value={formState.invitedUser} type={'text'} placeholder={"INVITE USER"}/>
+        <input onChange={onPost} value={formState.posts} type={'text'} placeholder={"POST TO THREAD"}/>
         <button>Create Thread</button>
         <label>
            <small>PRIVATE</small>
-            <input onChange={onDelete} checked={formState.private} type={'checkbox'}/>
+            <input onChange={onPrivate} checked={formState.private} type={'checkbox'}/>
         </label>
     </form>
 }
