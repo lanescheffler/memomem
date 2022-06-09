@@ -9,6 +9,8 @@ export function ThreadChat() {
 
     const chatList = useSelector(state => state.chatList);
     const userCreated = useSelector(state => state.currentUser)
+    const chatId = useSelector(state => state.selectedThread.id)
+    // const threadId = useSelector(state => state.selectedThread.id)
 
     const [message, setMessage] = useState("");
 
@@ -17,7 +19,7 @@ export function ThreadChat() {
         dispatch({
             type: ON_CHAT,
             message: {
-                id: uuidv4(),
+                id: chatId,
                 message,
                 date: new Date().toDateString(),
                 userCreated,
@@ -31,6 +33,16 @@ export function ThreadChat() {
             type: ON_THREAD_RELEASE
         })
     }
+
+    // function ChatFilter() {
+    //     state.userList.find(user => user.username === action.regInfo.username)
+    // }
+    //
+    // function Chatfilter()
+    //     if (chatId == threadId) {
+    //
+    //     }
+    // )
 
     return (
         <div className="chat">

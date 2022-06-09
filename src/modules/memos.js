@@ -16,14 +16,15 @@ const initState = {
     loggedIn: false,
     currentUser: false,
     userCreated: false,
-    invitedUser: false,
+    invitedUserList: [],
     logOut: false, //idk if i need this.
 
     threadList: [], //this is the memoInput & memoList, with a list of all chats,
     selectedThread: null,//message board - shows the messages ie Memos
     selectedThreadToEdit: null,
     selectedPosts: null,
-    chatList: [],
+    chatList: [], // this is currently one chat list. this needs to be filter out
+    //to display only the selected chats, with the matched ID.
     selectedChatList: [] //specific ids, in array. dump id messages in array
 
 }
@@ -42,8 +43,7 @@ export function reducer(state = initState, action) {
                 userList: [...state.userList, action.regInfo]
             }
         case ON_LOGIN:
-            const foundUser = state.userList.find(
-                user => user.username === action.loginInfo.username && user.password === action.loginInfo.password);
+            const foundUser = state.userList.find(user => user.username === action.loginInfo.username && user.password === action.loginInfo.password);
             if (!foundUser) {
                 alert('invalid login')
                 return {...state}
@@ -61,17 +61,18 @@ export function reducer(state = initState, action) {
                 currentUser: null
             }
         case ON_THREAD_ADD:
-            const invitedUser = state.userList.find(user => user.username === action.thread.invitedUser);
-            if (!invitedUser) {
-                alert('invalid invite')
-                return {...state}
-            }
+            console.log(state.invitedUserList)
+            // const InvitedUser = state.invitedUserList.find(user => user.invitedUserList === action.thread.invitedUser);
+            // if (InvitedUser == '') {
+            //     alert('invalid invite')
+            //     return {...state}
+            // }
             return {
                 ...state,
                 threadList:
                     [...state.threadList,
                     action.thread ],
-                invitedUser: action.thread.invitedUser,
+                invitedUserList: [...state.invitedUserList, action.thread.invitedUser],
                 userCreated: action.thread.userCreated,
             }
         case ON_THREAD_DELETE:
@@ -100,12 +101,7 @@ export function reducer(state = initState, action) {
                 selectedChat: null
             }
         case ON_THREAD_RELEASE:
-            // if (state.currentUser !== action.thread.userCreated){
-            //     //if (!newUserCreated) {
-            //     alert('you did not create this thread')
-            //     return {...state}
-            // }
-            console.log("this is a test")
+            console.log("you have release the thread")
             return {
                 ...state,
                 selectedThread: null,
@@ -136,10 +132,20 @@ export function reducer(state = initState, action) {
             }
         //currently mimicking ON_SELECT_THREAD
         case ON_THREAD_CHAT:
-            if (state.currentUser !== action.thread.userCreated && state.currentUser !== action.thread.invitedUser){
-                //if (!newUserCreated) {
-                alert('this is a private chat')
-                return {...state}
+            // if (state.selectedThread.invitedUser == '') {
+            //     return {
+            //         //returning the selected thread as thread.
+            //         ...state,
+            //         selectedThread: action.thread,
+            //         selectedChatList: null
+            //     }
+            // }
+            if(action.thread.invitedUser !== ''){
+                if (state.currentUser !== action.thread.userCreated && state.currentUser !== action.thread.invitedUser){
+                    //if (!newUserCreated) {
+                    alert('this is a private chat')
+                    return {...state}
+                }
             }
             return {
                 //returning the selected thread as thread.
@@ -148,6 +154,7 @@ export function reducer(state = initState, action) {
                 selectedChatList: null
             }
         case ON_CHAT:
+            // console.log(state.chatList)
             return {
                 ...state,
                 chatList: [...state.chatList, action.message],

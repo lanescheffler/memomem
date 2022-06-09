@@ -29,7 +29,7 @@ function App() {
     // const chatList = useSelector(state => state.chatList);
     const currentUser = useSelector(state => state.currentUser);
     const loggedIn = useSelector(state => state.loggedIn);
-    const invitedUser = useSelector(state => state.invitedUser)
+    const invitedUserList = useSelector(state => state.invitedUserList)
     const userCreated = useSelector(state => state.userCreated)
     const selectedThread = useSelector(state => state.selectedThread)
     const selectedChat = useSelector(state => state.selectedChat)
@@ -44,8 +44,8 @@ function App() {
          this is going to display another list of chats.
             {/*<ChatList/>*/}
             {<ThreadChat/>}
-            {/*{chatList.map(message => <div key={message.id}> {message.message}*/}
-            {/*    ...from : {message.userCreated} @ {message.date} </div>)}*/}
+            {/*<>{chatList.map(message => <div key={message.id}> {message.message}*/}
+            {/*    ...from : {message.userCreated} @ {message.date} </div>)}</>*/}
 
         </div>
     }
@@ -62,10 +62,12 @@ function App() {
     return <div>
 
         you are logged in as...current user: {currentUser}
-        // current invited user: {invitedUser}
+        // invitedUserList: {invitedUserList}
         // created user: {userCreated}
         <br/>
-        user list: {userList.map(user => <div key={user.id}> {user.username}</div>)}
+        USERLIST: {userList.map(user => <div key={user.id}> {user.username}</div>)}
+
+        one way if then stmt right here. showing only message id's with the same selected thread id.
 
         <input type="button" value="logout" onClick={() => {dispatch({type: ON_LOGOUT})}}/>
 

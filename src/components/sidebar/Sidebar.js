@@ -10,7 +10,7 @@ export function ThreadInfo(props) {
     const newThread = {
         id: uuidv4(),
         userCreated: userCreated,
-        invitedUser: [],
+        invitedUser: '',
         title: '',
         date: new Date(),
         private: false,

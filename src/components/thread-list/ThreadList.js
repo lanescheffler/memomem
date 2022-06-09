@@ -16,8 +16,8 @@ export function ThreadList({onEditSelect, onDelete, _Thread = Thread}) {
         return 0;
     }
 
-    const userThreadList = threadList.filter(m => !m.private)
-    const privateList = threadList.filter(m => m.private)
+    const userThreadList = threadList.filter(t => !t.private)
+    const privateList = threadList.filter(t => t.private)
 
     return <>
         <strong>THREAD LIST:</strong>
