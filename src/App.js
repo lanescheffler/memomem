@@ -26,12 +26,13 @@ function App() {
 
     // const sidebar = useSelector(state => )
     const userList = useSelector(state => state.userList);
-    const chatList = useSelector(state => state.chatList);
+    // const chatList = useSelector(state => state.chatList);
     const currentUser = useSelector(state => state.currentUser);
     const loggedIn = useSelector(state => state.loggedIn);
     const invitedUser = useSelector(state => state.invitedUser)
     const userCreated = useSelector(state => state.userCreated)
     const selectedThread = useSelector(state => state.selectedThread)
+    const selectedChat = useSelector(state => state.selectedChat)
     const selectedThreadToEdit = useSelector(state => state.selectedThreadToEdit);
 
     if (selectedThreadToEdit) {
@@ -42,10 +43,9 @@ function App() {
         return  <div>this is a chat room
          this is going to display another list of chats.
             {/*<ChatList/>*/}
-            <ThreadChat/>
-
-            {chatList.map(message => <div key={message.id}> {message.message}
-                ...from : {message.userCreated} @ {message.date} </div>)}
+            {<ThreadChat/>}
+            {/*{chatList.map(message => <div key={message.id}> {message.message}*/}
+            {/*    ...from : {message.userCreated} @ {message.date} </div>)}*/}
 
         </div>
     }

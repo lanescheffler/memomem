@@ -15,8 +15,8 @@ export function Thread({thread}) {
         {thread.invitedUser}_has been invited to this thread!!!___
         {thread.userCreated}_created this thread.
         <br/>
-        PUBLIC POSTS:
-        {thread.posts}
+        {/*PUBLIC POSTS:*/}
+        {/*{thread.posts}*/}
 
         <button onClick={() => dispatch({type: ON_THREAD_CHAT, thread: thread})}>
             Chat

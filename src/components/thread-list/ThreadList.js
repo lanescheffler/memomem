@@ -30,14 +30,14 @@ export function ThreadList({onEditSelect, onDelete, _Thread = Thread}) {
                 })
         }
         <br/>
-        <strong>PRIVATE LIST:</strong>
-        {
-            privateList.sort(sortThreadList)
-                .map((threadData, idx) => {
-                    return <div key={idx} className={'m-3'}>
-                        <_Thread thread={threadData} onEditSelect={onEditSelect} onDelete={onDelete}/>
-                    </div>
-                })
-        }
+        {/*<strong>PRIVATE LIST:</strong>*/}
+        {/*{*/}
+        {/*    privateList.sort(sortThreadList)*/}
+        {/*        .map((threadData, idx) => {*/}
+        {/*            return <div key={idx} className={'m-3'}>*/}
+        {/*                <_Thread thread={threadData} onEditSelect={onEditSelect} onDelete={onDelete}/>*/}
+        {/*            </div>*/}
+        {/*        })*/}
+        {/*}*/}
     </>
 }

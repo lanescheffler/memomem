@@ -8,6 +8,7 @@ export const ON_THREAD_SELECT_TO_EDIT = 'memos/ON_THREAD_SELECT_TO_EDIT';
 export const ON_THREAD_EDIT = 'memos/ON_THREAD_EDIT';
 export const ON_THREAD_CHAT = 'memos/ON_THREAD_CHAT';
 export const ON_CHAT = 'memos/ON_CHAT'
+export const ON_THREAD_RELEASE = 'memos/ON_THREAD_RELEASE';
 
 const initState = {
 
@@ -23,6 +24,8 @@ const initState = {
     selectedThreadToEdit: null,
     selectedPosts: null,
     chatList: [],
+    selectedChatList: [] //specific ids, in array. dump id messages in array
+
 }
 
 export function reducer(state = initState, action) {
@@ -72,7 +75,6 @@ export function reducer(state = initState, action) {
                 userCreated: action.thread.userCreated,
             }
         case ON_THREAD_DELETE:
-            console.log(action.thread.userCreated)
             //const newUserCreated = state.userList.find(user => user.username === action.thread.userCreated);
             //console.log(newUserCreated)
             if (state.currentUser !== action.thread.userCreated){
@@ -85,17 +87,32 @@ export function reducer(state = initState, action) {
                 ...state,
                 threadList: state.threadList.filter(cThread => cThread.id !== action.thread.id)
             }
-        case ON_THREAD_SELECT:
+        case ON_THREAD_SELECT: //this will select a thread and chatList
             // if (state.currentUser !== action.thread.userCreated){
             //     //if (!newUserCreated) {
             //     alert('you did not create this thread')
             //     return {...state}
             // }
+            console.log("this is a test")
             return {
                 ...state,
-                selectedThread: null
+                selectedThread: null,
+                selectedChat: null
+            }
+        case ON_THREAD_RELEASE:
+            // if (state.currentUser !== action.thread.userCreated){
+            //     //if (!newUserCreated) {
+            //     alert('you did not create this thread')
+            //     return {...state}
+            // }
+            console.log("this is a test")
+            return {
+                ...state,
+                selectedThread: null,
+                selectedChat: null
             }
         case ON_THREAD_SELECT_TO_EDIT:
+
             if (state.currentUser !== action.thread.userCreated){
                 //if (!newUserCreated) {
                 alert('you did not create this thread')
@@ -119,7 +136,6 @@ export function reducer(state = initState, action) {
             }
         //currently mimicking ON_SELECT_THREAD
         case ON_THREAD_CHAT:
-            console.log(action.thread.posts)
             if (state.currentUser !== action.thread.userCreated && state.currentUser !== action.thread.invitedUser){
                 //if (!newUserCreated) {
                 alert('this is a private chat')
@@ -128,15 +144,13 @@ export function reducer(state = initState, action) {
             return {
                 //returning the selected thread as thread.
                 ...state,
-                selectedThread: action.thread
+                selectedThread: action.thread,
+                selectedChatList: null
             }
         case ON_CHAT:
-            console.log(state.userList)
-            console.log(state.chatList)
             return {
                 ...state,
                 chatList: [...state.chatList, action.message],
-
             }
 
 

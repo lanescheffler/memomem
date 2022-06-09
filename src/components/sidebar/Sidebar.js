@@ -7,8 +7,6 @@ export function ThreadInfo(props) {
     const userCreated = useSelector(state => state.currentUser)
     // const posts = useSelector(state => state.selectedThread.posts)
 
-    // const [userCreated, setuserCreated] = useState("");
-
     const newThread = {
         id: uuidv4(),
         userCreated: userCreated,
