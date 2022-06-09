@@ -132,14 +132,6 @@ export function reducer(state = initState, action) {
             }
         //currently mimicking ON_SELECT_THREAD
         case ON_THREAD_CHAT:
-            // if (state.selectedThread.invitedUser == '') {
-            //     return {
-            //         //returning the selected thread as thread.
-            //         ...state,
-            //         selectedThread: action.thread,
-            //         selectedChatList: null
-            //     }
-            // }
             if(action.thread.invitedUser !== ''){
                 if (state.currentUser !== action.thread.userCreated && state.currentUser !== action.thread.invitedUser){
                     //if (!newUserCreated) {
@@ -154,7 +146,7 @@ export function reducer(state = initState, action) {
                 selectedChatList: null
             }
         case ON_CHAT:
-            // console.log(state.chatList)
+            console.log(state.chatList)
             return {
                 ...state,
                 chatList: [...state.chatList, action.message],

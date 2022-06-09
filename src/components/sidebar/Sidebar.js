@@ -48,12 +48,12 @@ export function ThreadInfo(props) {
         })
     }
 
-    function onPrivate(event) {
-        setFormState({
-            ...formState,
-            private: event.target.checked
-        })
-    }
+    // function onPrivate(event) {
+    //     setFormState({
+    //         ...formState,
+    //         private: event.target.checked
+    //     })
+    // }
 
     return <form onSubmit={onFormSubmit}>
         <input onChange={onTitleChange} value={formState.title} type={'text'} placeholder={"THREAD TITLE"}/>
@@ -62,7 +62,7 @@ export function ThreadInfo(props) {
         <button>Create Thread</button>
         <label>
            <small>PRIVATE</small>
-            <input onChange={onPrivate} checked={formState.private} type={'checkbox'}/>
+            {/*<input onChange={onPrivate} checked={formState.private} type={'checkbox'}/>*/}
         </label>
     </form>
 }

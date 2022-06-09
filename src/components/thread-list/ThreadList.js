@@ -16,8 +16,8 @@ export function ThreadList({onEditSelect, onDelete, _Thread = Thread}) {
         return 0;
     }
 
-    const userThreadList = threadList.filter(t => !t.private)
-    const privateList = threadList.filter(t => t.private)
+    const userThreadList = threadList.filter(t => !t.invitedUser)
+    const privateList = threadList.filter(t => t.invitedUser)
 
     return <>
         <strong>THREAD LIST:</strong>
@@ -30,14 +30,14 @@ export function ThreadList({onEditSelect, onDelete, _Thread = Thread}) {
                 })
         }
         <br/>
-        {/*<strong>PRIVATE LIST:</strong>*/}
-        {/*{*/}
-        {/*    privateList.sort(sortThreadList)*/}
-        {/*        .map((threadData, idx) => {*/}
-        {/*            return <div key={idx} className={'m-3'}>*/}
-        {/*                <_Thread thread={threadData} onEditSelect={onEditSelect} onDelete={onDelete}/>*/}
-        {/*            </div>*/}
-        {/*        })*/}
-        {/*}*/}
+        <strong>PRIVATE LIST:</strong>
+        {
+            privateList.sort(sortThreadList)
+                .map((threadData, idx) => {
+                    return <div key={idx} className={'m-3'}>
+                        <_Thread thread={threadData} onEditSelect={onEditSelect} onDelete={onDelete}/>
+                    </div>
+                })
+        }
     </>
 }
