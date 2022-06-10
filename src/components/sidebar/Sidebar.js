@@ -17,8 +17,7 @@ export function ThreadInfo(props) {
         posts: []
     }
 
-    const { onSubmit, thread = newThread,  } = props
-
+    const { onSubmit, thread = newThread, } = props
     const [formState, setFormState] = useState(thread);
 
     function onFormSubmit(e) {

@@ -2,10 +2,6 @@ import {Thread} from "../thread/Thread";
 import {useSelector} from "react-redux";
 
 
-// list.map((memoData) => {
-//     return <Memo memo={memoData}/>
-// })
-
 export function ThreadList({onEditSelect, onDelete, _Thread = Thread}) {
 
     const threadList = useSelector(state => state.threadList)
