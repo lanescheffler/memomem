@@ -24,10 +24,11 @@ export function Registar() {
 
     return (
         <div className="registar">
-            <form className="registar_form" onSubmit={onSubmitRegistar} >
-                <input type="username" placeholder="USERNAME" value={username} onChange={e => setUsername(e.target.value)}/>
-                <input type="password" placeholder="PASSWORD" value={password} onChange={e => setPassword(e.target.value)}/>
-                <button type="submit" className="submit__btn">| Registar |</button>
+            <h2>welcome to ...memomem</h2>
+            <form className={"registar__form"} onSubmit={onSubmitRegistar}>
+                <input className={"regi__input"} type="username" placeholder="USERNAME" value={username} onChange={e => setUsername(e.target.value)}/>
+                <input className={"regi__input"} type="password" placeholder="PASSWORD" value={password} onChange={e => setPassword(e.target.value)}/>
+                <button type="submit" className="regi__btn">| Registar |</button>
             </form>
         </div>
     );

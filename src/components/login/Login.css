@@ -6,3 +6,31 @@
 /*    align-items: center;*/
 /*    font-family: "Inter";*/
 /*}*/
+
+.login__form {
+    display: flex;
+    flex-direction: row;
+}
+
+.login__input {
+    min-width: 30px;
+    padding: 20px;
+    margin-bottom: 10px;
+    outline: none;
+    border: 1px solid;
+    border-radius: 2px;
+    font-size:10px;
+    font-family: "Arial Black";
+}
+
+.login__btn {
+    min-width: 145px;
+    padding: 16px 30px;
+    margin-bottom: 10px;
+    background: darkseagreen;
+    border: 1px color();
+    color: azure;
+    font-size: 14px;
+    font-family: "Arial Black";
+    border-radius: 3px;
+}
