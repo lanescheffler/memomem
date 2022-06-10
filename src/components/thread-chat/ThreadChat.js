@@ -38,15 +38,16 @@ export function ThreadChat() {
 
     return (
         <div className="chat">
-            <form className="chat_form" onSubmit={onSubmitMessage} >
-                <input type="text" placeholder="message" value={message} onChange={e => setMessage(e.target.value)}/>
-                <button type="submit" className="submit__btn">send.</button>
+
+            <form className="leaveChat" onSubmit={LeaveChatRoom}>
+                <button type="submit" className="submit__btn">leave chatroom.</button>
             </form>
 
             <ChatList/>
 
-            <form className="leaveChat" onSubmit={LeaveChatRoom}>
-            <button type="submit" className="submit__btn">leave chatroom.</button>
+            <form className="chat_form" onSubmit={onSubmitMessage} >
+                <input type="text" placeholder="message" value={message} onChange={e => setMessage(e.target.value)}/>
+                <button type="submit" className="submit__btn">send.</button>
             </form>
 
 
