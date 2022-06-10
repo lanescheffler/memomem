@@ -60,25 +60,15 @@ function App() {
     }
 
     return <div>
-
-        you are logged in as...current user: {currentUser}
-        // invitedUserList: {invitedUserList}
-        // created user: {userCreated}
-        <br/>
-        USERLIST: {userList.map(user => <div key={user.id}> {user.username}</div>)}
-
-        one way if then stmt right here. showing only message id's with the same selected thread id.
-
-        <input type="button" value="logout" onClick={() => {dispatch({type: ON_LOGOUT})}}/>
-
+        <> you are logged in as...{currentUser} </>
+        <> USERLIST: {userList.map(user => user.username)} </>
         <>
-            <small> this is a small message </small>
+            <input type="button" value="logout" onClick={() => {dispatch({type: ON_LOGOUT})}}/>
         </>
-
-        <>
-            <ThreadAdd/>
-            <ThreadList/>
-        </>
+            <>
+                <ThreadAdd/>
+                <ThreadList/>
+            </>
     </div>
 
 }

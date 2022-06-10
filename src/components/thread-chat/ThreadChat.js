@@ -36,16 +36,6 @@ export function ThreadChat() {
         })
     }
 
-    // function ChatFilter() {
-    //     state.userList.find(user => user.username === action.regInfo.username)
-    // }
-    //
-    // function Chatfilter()
-    //     if (chatId == threadId) {
-    //
-    //     }
-    // )
-
     return (
         <div className="chat">
             <form className="chat_form" onSubmit={onSubmitMessage} >

@@ -32,7 +32,7 @@ const initState = {
 export function reducer(state = initState, action) {
     switch (action?.type) {
         case ON_REGISTAR:
-            //doesnt allow duplicate usernames
+            //does not allow duplicate usernames
             const existingUser = state.userList.find(user => user.username === action.regInfo.username)
             if (existingUser) {
                 alert('That username is already taken.')
@@ -61,12 +61,7 @@ export function reducer(state = initState, action) {
                 currentUser: null
             }
         case ON_THREAD_ADD:
-            console.log(state.invitedUserList)
-            // const InvitedUser = state.invitedUserList.find(user => user.invitedUserList === action.thread.invitedUser);
-            // if (InvitedUser == '') {
-            //     alert('invalid invite')
-            //     return {...state}
-            // }
+            console.log(state.invitedUserList, 'this is the invitedUserList')
             return {
                 ...state,
                 threadList:
@@ -89,11 +84,6 @@ export function reducer(state = initState, action) {
                 threadList: state.threadList.filter(cThread => cThread.id !== action.thread.id)
             }
         case ON_THREAD_SELECT: //this will select a thread and chatList
-            // if (state.currentUser !== action.thread.userCreated){
-            //     //if (!newUserCreated) {
-            //     alert('you did not create this thread')
-            //     return {...state}
-            // }
             console.log("this is a test")
             return {
                 ...state,
@@ -101,7 +91,7 @@ export function reducer(state = initState, action) {
                 selectedChat: null
             }
         case ON_THREAD_RELEASE:
-            console.log("you have release the thread")
+            console.log("you have released the thread")
             return {
                 ...state,
                 selectedThread: null,
