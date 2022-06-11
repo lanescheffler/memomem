@@ -44,6 +44,7 @@ export function reducer(state = initState, action) {
                 alert('That username is already taken.')
                 return {...state}
             }
+            alert('successful registar')
             return {
                 ...state,
                 userList: [...state.userList, action.regInfo]
@@ -67,7 +68,6 @@ export function reducer(state = initState, action) {
                 currentUser: null
             }
         case ON_THREAD_ADD:
-            console.log(state.invitedUserList, 'this is the invitedUserList')
             return {
                 ...state,
                 threadList:
@@ -88,7 +88,7 @@ export function reducer(state = initState, action) {
             return {
                 ...state,
                 selectedThread: null,
-                selectedChat: null
+                selectedMessageToEdit: null
             }
         case ON_THREAD_SELECT_TO_EDIT:
 
@@ -147,7 +147,6 @@ export function reducer(state = initState, action) {
         //         chatList: [...state.chatList, action.message],
         //     }
         case ON_CHAT_ADD:
-            console.log(state.chatList)
             return {
                 ...state,
                 chatList: [...state.chatList, action.message],

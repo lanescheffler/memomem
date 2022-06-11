@@ -12,6 +12,7 @@ import {ChatAdd} from "./components/chat-add/ChatAdd";
 import {ChatList} from "./components/chat-list/ChatList";
 
 
+
 // useState()
 
 function App() {
@@ -35,21 +36,22 @@ function App() {
     const selectedThreadToEdit = useSelector(state => state.selectedThreadToEdit);
     const selectedMessageToEdit = useSelector(state => state.selectedMessageToEdit);
 
-    if (selectedThreadToEdit) {
-        return  <div><ThreadEdit/></div>
+    if (selectedThreadToEdit)  {
+        return  <div className="chatEdit_page">
+            <ThreadEdit/>...edit thread
+        </div>
     }
 
     if (selectedMessageToEdit) {
-        return  <div><ChatEdit/></div>
+        return  <div className="chatEdit_page">
+            <ChatEdit/>
+        </div>
     }
 
     if (selectedThread) {
-        return  <div>this is a chat room
+        return  <div className="chat_page">this is a chat room
             <ChatList/>
             <ChatAdd/>
-            {/*<>{chatList.map(message => <div key={message.id}> {message.message}*/}
-            {/*    ...from : {message.userCreated} @ {message.date} </div>)}</>*/}
-
         </div>
     }
 
@@ -61,19 +63,33 @@ function App() {
         </div>
     }
 
-    return <div>
-        <> you are logged in as...{currentUser} </>
-        <> USERLIST: {userList.map(user => <div key={user.id} className='userList' >{user.username}</div>)} </>
+    function MouseOver(event) {
+            event.target.style.background = 'seagreen';
+        }
+    function MouseOut(event){
+        event.target.style.background="";
+    }
 
-        <>
-            <input type="button" value="logout" onClick={() => {dispatch({type: ON_LOGOUT})}}/>
-        </>
-            <>
-                <ThreadAdd/>
+    return <div className="user_back">
+
+            <span className="current_user">
+                you are logged in as ...{currentUser}
+            </span>
+
+            <span>
+                <input onMouseOver={MouseOver} onMouseOut={MouseOut} className="logout_btn" type="button" value="logout"
+                       onClick={() => {dispatch({type: ON_LOGOUT})}}/>
+            </span>
+            <br/>
+            <span className="user_list">
+                userlist:_{userList.map(user => <div key={user.id} className='userList' >{user.username},</div>)}
+            </span>
+
+            <span className="home_page">
                 <ThreadList/>
-            </>
+                <ThreadAdd/>
+            </span>
     </div>
-
 }
 
 export default App;

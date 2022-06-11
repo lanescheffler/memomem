@@ -1,5 +1,7 @@
 import {Thread} from "../thread/Thread";
 import {useSelector} from "react-redux";
+import {Button, Dropdown} from "react-bootstrap";
+import './ThreadList.css'
 
 
 export function ThreadList({onEditSelect, onDelete, _Thread = Thread}) {
@@ -16,24 +18,53 @@ export function ThreadList({onEditSelect, onDelete, _Thread = Thread}) {
     const privateList = threadList.filter(t => t.invitedUser)
 
     return <>
-        <strong>THREAD LIST:</strong>
-        {
-            userThreadList.sort(sortThreadList)
-                .map((threadData, idx) => {
-                    return <div key={idx} className={'m-3'}>
-                        <_Thread thread={threadData} onEditSelect={onEditSelect} onDelete={onDelete}/>
-                    </div>
-                })
-        }
-        <br/>
-        <strong>PRIVATE LIST:</strong>
-        {
-            privateList.sort(sortThreadList)
-                .map((threadData, idx) => {
-                    return <div key={idx} className={'m-3'}>
-                        <_Thread thread={threadData} onEditSelect={onEditSelect} onDelete={onDelete}/>
-                    </div>
-                })
-        }
+        <div className={"pubHdr1"}><h1>public chat...</h1></div>
+        <div className={'public_thread'}>
+                <strong></strong>
+                {
+                    userThreadList.map((threadData, idx) => {
+                            return <div key={idx} className={'public_thread_list'}>
+                                <_Thread thread={threadData} onEditSelect={onEditSelect} onDelete={onDelete}/>
+                            </div>
+                        })
+                }
+        </div>
+        <div className={"privHdr1"}><h1>private chat...</h1></div>
+        <div className={'private_thread'}>
+                <strong></strong>
+                {
+                    privateList.reverse(sortThreadList).map((threadData, idx) => {
+                            return <div key={idx} className={'private_thread_list'}>
+                                <_Thread thread={threadData} onEditSelect={onEditSelect} onDelete={onDelete}/>
+                            </div>
+                        })
+                }
+        </div>
     </>
+
+    // <div className={'public_thread'}>
+    //     <p>
+    //     <strong></strong>
+    //     {
+    //         userThreadList.sort(sortThreadList)
+    //             .map((threadData, idx) => {
+    //                 return <div key={idx} className={'public_thread_list'}>
+    //                     <_Thread thread={threadData} onEditSelect={onEditSelect} onDelete={onDelete}/>
+    //                 </div>
+    //             })
+    //     }
+    //     </p>
+    //     <br/>
+    //     <p>
+    //     <strong>PRIVATE LIST:</strong>
+    //     {
+    //         privateList.sort(sortThreadList)
+    //             .map((threadData, idx) => {
+    //                 return <div key={idx} className={'private_thread_list'}>
+    //                     <_Thread thread={threadData} onEditSelect={onEditSelect} onDelete={onDelete}/>
+    //                 </div>
+    //             })
+    //     }
+    //     </p>
+    // </div>
 }

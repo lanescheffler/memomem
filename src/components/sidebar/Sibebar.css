@@ -1,0 +1,48 @@
+.sidebar {
+    background: blanchedalmond;
+    border: 10px black;
+    border-radius: 2px;
+}
+
+.thread__form {
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: inline-flex;
+    justify-content: right;
+
+    /*display: inline-flex;*/
+    /*flex-direction: row;*/
+}
+
+.thread__input {
+
+    /*position: absolute;*/
+    display: inline-flex;
+    min-width: 30px;
+    padding: 20px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    outline: none;
+    border: 1px solid black;
+    border-radius: 2px;
+    font-size:10px;
+    font-family: "Arial Black";
+}
+
+.threadList__btn {
+
+    /*position: absolute;*/
+    min-width: 145px;
+    padding: 15px 30px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    background: seagreen;
+    border: 1px solid black;
+    color: azure;
+    font-size: 14px;
+    font-family: "Arial Black";
+    border-radius: 2px;
+}

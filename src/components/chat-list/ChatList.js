@@ -20,9 +20,9 @@
 //         <br/>
 //     </>
 // }
-
 import {Message} from "../memo/Memo";
 import {useSelector} from "react-redux";
+
 
 
 export function ChatList({onEditSelect, onDelete, _Message = Message}) {
@@ -41,14 +41,17 @@ export function ChatList({onEditSelect, onDelete, _Message = Message}) {
     const selectedChatList = chatList.filter(m => m.threadId == threadId)
 
     return <>
-        <strong>MESSAGES</strong>
-        {
+        <div>message</div>
+        <div className={'message_thread'}>
+            <strong></strong> {
             selectedChatList.sort(sortChatList)
                 .map((messageData, idx) => {
                     return <div key={idx} className={'m-3'}>
                         <_Message message={messageData} onEditSelect={onEditSelect} onDelete={onDelete}/>
                     </div>
                 })
-        }
+            }
+        </div>
     </>
+
 }

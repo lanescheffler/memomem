@@ -1,11 +1,3 @@
-.landing_page {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    height: 100vh;
-    align-items: center;
-}
-
 /*.login {*/
 /*    display: flex;*/
 /*    flex-direction: column;*/
@@ -24,3 +16,86 @@
 /*    align-items: center;*/
 /*    font-family: "Inter";*/
 /*}*/
+
+.landing_page {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100vh;
+    align-items: center;
+}
+
+.home_page {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100vh;
+    align-items: center;
+}
+
+.user_back {
+    display: flex;
+    background: darkseagreen;
+}
+
+.chatEdit_page {
+    display: flex;
+    background: darkseagreen;
+    font-size:14px;
+    font-family: "Arial Black"
+}
+
+.current_user {
+    display: inline-flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 0px;
+    align-items: center;
+
+    min-width: 35px;
+    padding: 10px;
+    margin-bottom: 0px;
+    background: transparent;
+    color: black;
+    outline: none;
+    border: 0px solid;
+    border-radius: 2px;
+    font-size:14px;
+    font-family: "Arial Black"
+}
+
+.logout_btn {
+    display: inline-flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 0px;
+    align-items: center;
+    min-width: 35px;
+    padding: 10px;
+    margin-bottom: 0px;
+    background: darkseagreen;
+    color: azure;
+    font-size: 14px;
+    font-family: "Arial Black";
+    border: none;
+    border-radius: 2px;
+}
+
+.user_list {
+    position: absolute;
+    display: inline-flex;
+    justify-content: right;
+    top: 0px;
+    right: 20px;
+    min-width: 0;
+    padding: 0px;
+    margin-bottom: 0px;
+    background: transparent;
+    color: black;
+    outline: none;
+    border: 0px solid;
+    border-radius: 2px;
+    font-size:14px;
+    font-family: "Arial Black"
+}
+

@@ -81,13 +81,12 @@
 //         </div>
 //     );
 // }
-
-
 import {useState} from "react";
 import {v4 as uuidv4} from 'uuid';
 import {ON_CHAT,ON_THREAD_RELEASE} from "../../modules/memos";
 import {useDispatch, useSelector} from "react-redux";
 import {ChatList} from "../chat-list/ChatList";
+import './ThreadChat.css'
 
 export function ThreadChat(props) {
 
@@ -167,18 +166,13 @@ export function ThreadChat(props) {
 //     );
 // }
 
-    return <> <form onSubmit={onSubmitMessage}>
-        <input onChange={onMessageChange} value={formState.message} type={'text'} placeholder={"message"}/>
-        {/*<input onChange={onPost} value={formState.posts} type={'text'} placeholder={"POST TO THREAD"}/>*/}
-        <button>send.</button>
-        {/*<label>*/}
-        {/*   <small>PRIVATE</small>*/}
-        {/*    <input onChange={onPrivate} checked={formState.private} type={'checkbox'}/>*/}
-        {/*</label>*/}
+    return <> <form className={'message_form'} onSubmit={onSubmitMessage}>
+        <input className={'message_input'} onChange={onMessageChange} value={formState.message} type={'text'} placeholder={"message"}/>
+        <button className={'message_button'}>send.</button>
     </form>
 
         <form className="leaveChat" onSubmit={LeaveChatRoom}>
-            <button type="submit" className="submit__btn">leave chatroom.</button>
+            <button type="submit" className="submit__btn">leave chatroom</button>
         </form>
 
     </>
