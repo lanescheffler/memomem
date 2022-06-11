@@ -42,7 +42,23 @@
     display: flex;
     background: darkseagreen;
     font-size:14px;
+    font-family: "Arial Black";
+    /*height: 1000px;*/
+}
+
+.chat_page {
+
+    display: flex;
+    background: darkseagreen;
+    font-size:14px;
     font-family: "Arial Black"
+}
+
+.chat_back {
+    display: flex;
+    background: linen;
+    justify-content: center;
+    height: 925px;
 }
 
 .current_user {
@@ -98,4 +114,5 @@
     font-size:14px;
     font-family: "Arial Black"
 }
+
 

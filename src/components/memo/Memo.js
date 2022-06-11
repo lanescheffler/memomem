@@ -9,6 +9,13 @@ export function Message({message}) {
 
     const dispatch = useDispatch();
 
+    function MouseOver(event) {
+        event.target.style.background = 'azure';
+    }
+    function MouseOut(event){
+        event.target.style.background="";
+    }
+
     return <div className="message">
 
         {message.userCreated}:
@@ -19,10 +26,12 @@ export function Message({message}) {
         {/*PUBLIC POSTS:*/}
         {/*{thread.posts}*/}
 
-        <button className={'message_btn'} onClick={() => dispatch({type: ON_MESSAGE_SELECT_TO_EDIT, message: message})}>
+        <button className={'message_btn'} onMouseOver={MouseOver} onMouseOut={MouseOut}
+                onClick={() => dispatch({type: ON_MESSAGE_SELECT_TO_EDIT, message: message})}>
             Edit
         </button>
-        <button className={'message_btn'} onClick={() => dispatch({type: ON_MESSAGE_DELETE, message})}>
+        <button className={'message_btn'} onMouseOver={MouseOver} onMouseOut={MouseOut}
+                onClick={() => dispatch({type: ON_MESSAGE_DELETE, message})}>
             Delete
         </button>
     </div>

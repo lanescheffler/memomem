@@ -39,9 +39,12 @@ export function ChatList({onEditSelect, onDelete, _Message = Message}) {
     const chatList = useSelector(state => state.chatList)
     const threadId = useSelector(state => state.selectedThread.id)
     const selectedChatList = chatList.filter(m => m.threadId == threadId)
+    const threadTitle = useSelector(state => state.selectedThread.title)
 
     return <>
-        <div>message</div>
+            <div className={"message_title"}>
+            <h1>about {threadTitle}...</h1>
+        </div>
         <div className={'message_thread'}>
             <strong></strong> {
             selectedChatList.sort(sortChatList)

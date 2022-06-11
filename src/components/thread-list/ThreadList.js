@@ -22,8 +22,8 @@ export function ThreadList({onEditSelect, onDelete, _Thread = Thread}) {
         <div className={'public_thread'}>
                 <strong></strong>
                 {
-                    userThreadList.map((threadData, idx) => {
-                            return <div key={idx} className={'public_thread_list'}>
+                    userThreadList.map((threadData, idNA) => {
+                            return <div key={idNA} className={'public_thread_list'}>
                                 <_Thread thread={threadData} onEditSelect={onEditSelect} onDelete={onDelete}/>
                             </div>
                         })
@@ -33,8 +33,8 @@ export function ThreadList({onEditSelect, onDelete, _Thread = Thread}) {
         <div className={'private_thread'}>
                 <strong></strong>
                 {
-                    privateList.reverse(sortThreadList).map((threadData, idx) => {
-                            return <div key={idx} className={'private_thread_list'}>
+                    privateList.reverse(sortThreadList).map((threadData, idNA) => {
+                            return <div key={idNA} className={'private_thread_list'}>
                                 <_Thread thread={threadData} onEditSelect={onEditSelect} onDelete={onDelete}/>
                             </div>
                         })

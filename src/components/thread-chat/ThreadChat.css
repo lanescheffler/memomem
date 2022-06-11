@@ -1,16 +1,17 @@
 
 .message_form {
+
+    display: flex;
+    justify-content: right;
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    display: inline-flex;
-    justify-content: right;
 }
 
 .message_input {
 
-    min-width: 30px;
+    min-width: 350px;
     padding: 20px;
     margin-top: 10px;
     margin-bottom: 10px;
@@ -31,5 +32,29 @@
     color: azure;
     font-size: 14px;
     font-family: "Arial Black";
+    border-radius: 2px;
+}
+
+.leaveChat {
+    position: absolute;
+    top: 0%;
+    left: 91.75%;
+
+}
+
+.leaveChat_btn {
+    display: inline-flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 0px;
+    align-items: center;
+    min-width: 35px;
+    padding: 10px;
+    margin-bottom: 0px;
+    background: transparent;
+    color: azure;
+    font-size: 14px;
+    font-family: "Arial Black";
+    border: none;
     border-radius: 2px;
 }

@@ -37,22 +37,34 @@ function App() {
     const selectedMessageToEdit = useSelector(state => state.selectedMessageToEdit);
 
     if (selectedThreadToEdit)  {
-        return  <div className="chatEdit_page">
+        return <div className="chatEdit_page">
+            {/*<span className="chatEdit_page">*/}
+            <span className="user_list">
+                userlist:_{userList.map(user => <div key={user.id} className='userList' >{user.username},</div>)}
+            </span>
+
             <ThreadEdit/>...edit thread
+            {/*</span>*/}
         </div>
     }
 
     if (selectedMessageToEdit) {
         return  <div className="chatEdit_page">
-            <ChatEdit/>
+            <ChatEdit/>...edit message
         </div>
+
     }
 
     if (selectedThread) {
-        return  <div className="chat_page">this is a chat room
-            <ChatList/>
-            <ChatAdd/>
+        return  <>
+                <div className="chat_page">  this is a chat room...
+                    <span>
+                    <ChatList/>
+                    <ChatAdd/>
+                </span>
         </div>
+        <div className={"chat_back"}></div>
+    </>
     }
 
 
@@ -80,7 +92,7 @@ function App() {
                 <input onMouseOver={MouseOver} onMouseOut={MouseOut} className="logout_btn" type="button" value="logout"
                        onClick={() => {dispatch({type: ON_LOGOUT})}}/>
             </span>
-            <br/>
+        <br/>
             <span className="user_list">
                 userlist:_{userList.map(user => <div key={user.id} className='userList' >{user.username},</div>)}
             </span>

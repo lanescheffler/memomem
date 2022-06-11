@@ -11,6 +11,12 @@
     font-family: "Arial Black";
 }
 
+.message_title{
+    position: absolute;
+    top: 25%;
+    left: 36%;
+}
+
 .message_thread {
     position: absolute;
     top: 39%;
@@ -20,6 +26,7 @@
     flex-direction: column;
     justify-content: center;
     background-color: darkseagreen;
+    border: 1px solid;
     width: 534px;
     height: 110px;
     overflow: auto;
