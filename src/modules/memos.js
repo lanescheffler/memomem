@@ -22,8 +22,6 @@ const initState = {
     userList: [],
     loggedIn: false,
     currentUser: false,
-    userCreated: false,
-    invitedUserList: [],
     logOut: false, //idk if i need this.
 
     threadList: [],
@@ -31,20 +29,21 @@ const initState = {
     selectedThreadToEdit: null,
 
     chatList: [],
-    selectedChat: [],
     selectedMessageToEdit: null,
+
 }
 
 export function reducer(state = initState, action) {
     switch (action?.type) {
         case ON_REGISTAR:
+            console.log(state.userList)
             //does not allow duplicate usernames
             const existingUser = state.userList.find(user => user.username === action.regInfo.username)
-            if (existingUser) {
-                alert('That username is already taken.')
+            if (existingUser || action.regInfo.username === '') {
+                alert('invalid username: please try again')
                 return {...state}
             }
-            alert('successful registar')
+            // alert('successful registar')
             return {
                 ...state,
                 userList: [...state.userList, action.regInfo]
@@ -68,30 +67,29 @@ export function reducer(state = initState, action) {
                 currentUser: null
             }
         case ON_THREAD_ADD:
+            if (action.thread.title == '') {
+                alert('please enter a title')
+                return {...state}
+            }
             return {
                 ...state,
                 threadList:
-                    [...state.threadList,
-                    action.thread ],
-                invitedUserList: [...state.invitedUserList, action.thread.invitedUser],
-                userCreated: action.thread.userCreated,
+                    [...state.threadList, action.thread ],
             }
-        case ON_THREAD_SELECT: //this will select a thread and chatList
-            console.log("this is a test")
-            return {
-                ...state,
-                selectedThread: null,
-                selectedChat: null
-            }
+        // case ON_THREAD_SELECT: //this will select a thread and chatList
+        //     console.log("this is a test")
+        //     return {
+        //         ...state,
+        //         selectedThread: null,
+        //         selectedChat: null
+        //     }
         case ON_THREAD_RELEASE:
-            console.log("you have released the thread")
             return {
                 ...state,
                 selectedThread: null,
                 selectedMessageToEdit: null
             }
-        case ON_THREAD_SELECT_TO_EDIT:
-
+        case ON_THREAD_SELECT_TO_EDIT: // COME BACK TO THIS ONE.
             if (state.currentUser !== action.thread.userCreated){
                 //if (!newUserCreated) {
                 alert('you did not create this thread')
@@ -102,6 +100,7 @@ export function reducer(state = initState, action) {
                 selectedThreadToEdit: action.thread
             }
         case ON_THREAD_EDIT:
+            console.log(state.threadList)
             return {
                 ...state,
                 selectedThreadToEdit: null,
@@ -147,6 +146,10 @@ export function reducer(state = initState, action) {
         //         chatList: [...state.chatList, action.message],
         //     }
         case ON_CHAT_ADD:
+            if (action.message.message == '') {
+                alert('please enter a message')
+                return {...state}
+            }
             return {
                 ...state,
                 chatList: [...state.chatList, action.message],

@@ -9,13 +9,13 @@ export function ThreadInfo(props) {
     // const posts = useSelector(state => state.selectedThread.posts)
 
     const newThread = {
-        id: uuidv4(),
+        id: new Date().getMilliseconds(),
         userCreated: userCreated,
         invitedUser: '',
         title: '',
         date: new Date(),
-        private: false,
-        posts: []
+        // private: false,
+        // posts: []
     }
 
     const { onSubmit, thread = newThread, } = props

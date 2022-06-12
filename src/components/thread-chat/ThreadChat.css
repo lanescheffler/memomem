@@ -51,10 +51,10 @@
     min-width: 35px;
     padding: 10px;
     margin-bottom: 0px;
-    background: transparent;
+    background: darkseagreen;
     color: azure;
     font-size: 14px;
     font-family: "Arial Black";
     border: none;
-    border-radius: 2px;
+    border-radius: 1px;
 }
