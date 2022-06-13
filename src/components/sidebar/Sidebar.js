@@ -3,7 +3,7 @@ import {v4 as uuidv4} from 'uuid';
 import {useSelector} from "react-redux";
 import './Sibebar.css'
 
-export function ThreadInfo(props) {
+export function ThreadInfo(props, _useSelector = useSelector) {
 
     const userCreated = useSelector(state => state.currentUser)
     // const posts = useSelector(state => state.selectedThread.posts)

@@ -4,7 +4,7 @@ import {ON_REGISTAR} from "../../modules/memos";
 import {useDispatch, useSelector} from "react-redux";
 import './Registar.css'
 
-export function Registar({_useDispatch = useDispatch, _useSelector = useSelector}) {
+export function Registar({_useDispatch = useDispatch}) {
 
     const dispatch = _useDispatch();
 

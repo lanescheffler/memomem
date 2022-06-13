@@ -3,7 +3,7 @@ import {ON_LOGIN} from "../../modules/memos";
 import {useDispatch, useSelector} from "react-redux";
 import './Login.css';
 
-export function Login({_useDispatch = useDispatch, _useSelector = useSelector}) {
+export function Login({_useDispatch = useDispatch}) {
 
     const dispatch = _useDispatch();
 

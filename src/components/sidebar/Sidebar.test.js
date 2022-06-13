@@ -15,10 +15,35 @@ import {Login} from "../login/Login";
 //     }
 // )
 
+
+test(
+    '',
+    () => {
+    }
+)
+
+//this would pass without selector
 test('should show a input with type text with placeholder "THREAD TITLE"', () => {
-    render(<ThreadInfo _useDispatch={() => {}} _useSelector={() => {}}/>)
+    const _useSelector = (fn) => fn({userCreated: 'mike'})
+    render(<ThreadInfo _useSelector={_useSelector}/>)
 
     const input = screen.getByPlaceholderText('THREAD TITLE');
     expect(input.tagName).toBe('INPUT');
     expect(input).toHaveAttribute('type', 'text');
 })
+
+test('should show a input with type text with placeholder "INVITE USER"', () => {
+    const _useSelector = (fn) => fn({userCreated: 'mike'})
+    render(<ThreadInfo _useSelector={_useSelector}/>)
+
+    const input = screen.getByPlaceholderText('INVITE USER');
+    expect(input.tagName).toBe('INPUT');
+    expect(input).toHaveAttribute('type', 'text');
+})
+
+test('should show a button with text "Create Thread"', () => {
+    render(<ThreadInfo/>)
+    const button = screen.getByText("Create Thread");
+    expect(button.tagName).toBe("BUTTON");
+})
+

@@ -99,7 +99,6 @@ export function reducer(state = initState, action) {
                 selectedThreadToEdit: action.thread
             }
         case ON_THREAD_EDIT:
-            console.log(state.threadList)
             return {
                 ...state,
                 selectedThreadToEdit: null,
