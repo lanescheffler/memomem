@@ -3,9 +3,12 @@ import {v4 as uuidv4} from 'uuid';
 import {useSelector} from "react-redux";
 import './Sibebar.css'
 
-export function ThreadInfo(props, _useSelector = useSelector) {
+export function ThreadInfo(props) {
 
-    const userCreated = useSelector(state => state.currentUser)
+    const {onSubmit, _useSelector = useSelector} = props
+    let {thread} = props
+
+    const userCreated = _useSelector(state => state.currentUser)
     // const posts = useSelector(state => state.selectedThread.posts)
 
     const newThread = {
@@ -18,7 +21,10 @@ export function ThreadInfo(props, _useSelector = useSelector) {
         // posts: []
     }
 
-    const { onSubmit, thread = newThread, } = props
+    if (!thread) {
+        thread = newThread
+    }
+
     const [formState, setFormState] = useState(thread);
 
     function onFormSubmit(e) {
@@ -56,18 +62,18 @@ export function ThreadInfo(props, _useSelector = useSelector) {
     // }
 
     return <div className="sidebar">
-            <form onSubmit={onFormSubmit} className={"thread__form"}>
+        <form onSubmit={onFormSubmit} className={"thread__form"}>
             <input className={"thread__input"} onChange={onTitleChange}
                    value={formState.title} type={'text'} placeholder={"THREAD TITLE"}/>
             <input className={"thread__input"} onChange={onInviteChange}
                    value={formState.invitedUser} type={'text'} placeholder={"INVITE USER"}/>
-        {/*<input onChange={onPost}
+            {/*<input onChange={onPost}
                    value={formState.posts} type={'text'} placeholder={"POST TO THREAD"}/>*/}
             <button className="threadList__btn">Create Thread</button>
-        {/*<label>*/}
-        {/*   <small>PRIVATE</small>*/}
-        {/*    <input onChange={onPrivate} checked={formState.private} type={'checkbox'}/>*/}
-        {/*</label>*/}
+            {/*<label>*/}
+            {/*   <small>PRIVATE</small>*/}
+            {/*    <input onChange={onPrivate} checked={formState.private} type={'checkbox'}/>*/}
+            {/*</label>*/}
         </form>
     </div>
 }

@@ -42,7 +42,8 @@ test('should show a input with type text with placeholder "INVITE USER"', () => 
 })
 
 test('should show a button with text "Create Thread"', () => {
-    render(<ThreadInfo/>)
+    const _useSelector = (fn) => fn({userCreated: 'mike'})
+    render(<ThreadInfo _useSelector={_useSelector}/>)
     const button = screen.getByText("Create Thread");
     expect(button.tagName).toBe("BUTTON");
 })
