@@ -36,11 +36,10 @@ const initState = {
 export function reducer(state = initState, action) {
     switch (action?.type) {
         case ON_REGISTAR:
-            console.log(state.userList)
             //does not allow duplicate usernames
             const existingUser = state.userList.find(user => user.username === action.regInfo.username)
-            if (existingUser || action.regInfo.username === '') {
-                alert('invalid username: please try again')
+            if (existingUser || action.regInfo.username === '' || action.regInfo.password === '') {
+                alert('invalid username or password: please try again')
                 return {...state}
             }
             // alert('successful registar')
@@ -122,9 +121,8 @@ export function reducer(state = initState, action) {
             // current user has to equal userCreated
             return {
                 ...state,
-                threadList: state.threadList.filter(cThread => cThread.id !== action.thread.id)
+                threadList: state.threadList.filter(createdThread => createdThread.id !== action.thread.id)
             }
-        //currently mimicking ON_SELECT_THREAD
         case ON_THREAD_CHAT:
             if(action.thread.invitedUser !== ''){
                 if (state.currentUser !== action.thread.userCreated && state.currentUser !== action.thread.invitedUser){
@@ -184,7 +182,7 @@ export function reducer(state = initState, action) {
             // current user has to equal userCreated
             return {
                 ...state,
-                chatList: state.chatList.filter(cMessage => cMessage.id !== action.message.id)
+                chatList: state.chatList.filter(createdMessage => createdMessage.id !== action.message.id)
             }
         default:
             return {

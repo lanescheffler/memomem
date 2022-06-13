@@ -1,12 +1,12 @@
 import {useState} from "react";
 import {v4 as uuidv4} from 'uuid';
 import {ON_REGISTAR} from "../../modules/memos";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import './Registar.css'
 
-export function Registar() {
+export function Registar({_useDispatch = useDispatch, _useSelector = useSelector}) {
 
-    const dispatch = useDispatch();
+    const dispatch = _useDispatch();
 
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");

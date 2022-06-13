@@ -3,9 +3,9 @@ import {ON_LOGIN} from "../../modules/memos";
 import {useDispatch, useSelector} from "react-redux";
 import './Login.css';
 
-export function Login() {
+export function Login({_useDispatch = useDispatch, _useSelector = useSelector}) {
 
-    const dispatch = useDispatch();
+    const dispatch = _useDispatch();
 
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
@@ -29,7 +29,7 @@ export function Login() {
                        onChange={e => setUsername(e.target.value)}/>
                 <input className={"login__input"} type="password" placeholder="PASSWORD" value={password}
                        onChange={e => setPassword(e.target.value)}/>
-                <button type="submit" className="login__btn">|  Login  |</button>
+                <button type="submit" className="login__btn">| Login |</button>
             </form>
         </div>
     );

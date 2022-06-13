@@ -41,12 +41,12 @@ export function ThreadInfo(props) {
         })
     }
 
-    function onPost(e) {
-        setFormState({
-            ...formState,
-            posts: e.target.value,
-        })
-    }
+    // function onPost(e) {
+    //     setFormState({
+    //         ...formState,
+    //         posts: e.target.value,
+    //     })
+    // }
 
     // function onPrivate(event) {
     //     setFormState({

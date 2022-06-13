@@ -175,7 +175,7 @@ export function ThreadChat(props) {
 
     return <> <form className={'message_form'} onSubmit={onSubmitMessage}>
         <input className={'message_input'} onChange={onMessageChange}
-               value={formState.message} type={'text'} placeholder={"MESSAGE"}/>
+               value={formState.message} type={'text'} placeholder={"...reverseString('MeMoMeM')"}/>
         <button className={'message_button'}>Send.</button>
     </form>
 
@@ -185,3 +185,4 @@ export function ThreadChat(props) {
 
     </>
 }
+

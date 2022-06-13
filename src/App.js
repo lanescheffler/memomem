@@ -6,11 +6,9 @@ import {useDispatch, useSelector} from "react-redux";
 import {ThreadAdd} from "./components/thread-add/ThreadAdd";
 import {ThreadList} from "./components/thread-list/ThreadList";
 import {ThreadEdit} from "./components/thread-edit/ThreadEdit";
-import {ThreadChat} from "./components/thread-chat/ThreadChat";
 import {ChatEdit} from "./components/memo-edit/MemoEdit";
 import {ChatAdd} from "./components/chat-add/ChatAdd";
 import {ChatList} from "./components/chat-list/ChatList";
-
 
 
 // useState()
@@ -36,11 +34,11 @@ function App() {
     const selectedThreadToEdit = useSelector(state => state.selectedThreadToEdit);
     const selectedMessageToEdit = useSelector(state => state.selectedMessageToEdit);
 
-    if (selectedThreadToEdit)  {
+    if (selectedThreadToEdit) {
         return <div className="chatEdit_page">
             {/*<span className="chatEdit_page">*/}
             <span className="user_list">
-                userlist:_{userList.map(user => <div key={user.id} className='userList' >{user.username},</div>)}
+                userlist:_{userList.map(user => <div key={user.id} className='userList'>{user.username},</div>)}
             </span>
 
             <ThreadEdit/>...edit thread
@@ -49,22 +47,22 @@ function App() {
     }
 
     if (selectedMessageToEdit) {
-        return  <div className="chatEdit_page">
+        return <div className="chatEdit_page">
             <ChatEdit/>...edit message
         </div>
 
     }
 
     if (selectedThread) {
-        return  <>
-                <div className="chat_page">  this is a chat room...
-                    <span>
+        return <>
+            <div className="chat_page"> this is a chat room...
+                <span>
                     <ChatList/>
                     <ChatAdd/>
                 </span>
-        </div>
-        <div className={"chat_back"}></div>
-    </>
+            </div>
+            <div className={"chat_back"}></div>
+        </>
     }
 
 
@@ -76,10 +74,11 @@ function App() {
     }
 
     function MouseOver(event) {
-            event.target.style.background = 'seagreen';
-        }
-    function MouseOut(event){
-        event.target.style.background="";
+        event.target.style.background = 'seagreen';
+    }
+
+    function MouseOut(event) {
+        event.target.style.background = "";
     }
 
     return <div className="user_back">
@@ -87,17 +86,18 @@ function App() {
             <span className="current_user">
                 you are logged in as ...{currentUser}
             </span>
-
-            <span>
+        <span>
                 <input onMouseOver={MouseOver} onMouseOut={MouseOut} className="logout_btn" type="button" value="logout"
-                       onClick={() => {dispatch({type: ON_LOGOUT})}}/>
+                       onClick={() => {
+                           dispatch({type: ON_LOGOUT})
+                       }}/>
             </span>
         <br/>
-            <span className="user_list">
-                userlist:_{userList.map(user => <div key={user.id} className='userList' >{user.username},</div>)}
+        <span className="user_list">
+                userlist:_{userList.map(user => <div key={user.id} className='userList'>{user.username},</div>)}
             </span>
 
-            <span className="home_page">
+        <span className="home_page">
                 <ThreadList/>
                 <ThreadAdd/>
             </span>
