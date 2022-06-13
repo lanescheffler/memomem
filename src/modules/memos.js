@@ -175,7 +175,7 @@ export function reducer(state = initState, action) {
         case ON_MESSAGE_DELETE:
             if (state.currentUser !== action.message.userCreated){
                 //if (!newUserCreated) {
-                alert('you did not create this thread')
+                alert('you did not create this message')
                 return {...state}
             }
             // current user has to equal userCreated
