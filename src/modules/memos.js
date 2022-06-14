@@ -60,7 +60,6 @@ export function reducer(state = initState, action) {
                 loggedIn: true
                 }
         case ON_LOGOUT:
-            console.log(state.currentUser)
             return {
                 ...state,
                 loggedIn: false,
