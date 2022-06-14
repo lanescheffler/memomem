@@ -43,7 +43,7 @@ test(
 // })
 
 test('should add id, username, & password to user list', () => {
-    const iState = reducer();
+    const iState = {...reducer()};
     const state = reducer(iState, {type: ON_REGISTAR, regInfo: {id: 1, username: 'mike', password: 'pass'}})
     expect(state).toStrictEqual({...iState, userList: [{id: 1, username: 'mike', password: 'pass'}]})
 })
@@ -57,26 +57,45 @@ test('should add id, username, & password to user list', () => {
 // })
 
 // this test works without find.
+// test('should set current user to login Info username and logged in to true', () => {
+//     const loginInfo = {username: 'mike'};
+//     // eslint-disable-next-line react-hooks/rules-of-hooks
+//     const iState = () => {useState(loginInfo)};
+//     const state = {
+//         ...reducer(iState, {
+//             type: ON_LOGIN, loginInfo
+//         })
+//     }
+//     expect(state).toStrictEqual({
+//         currentUser: 'mike',
+//         loggedIn: true
+//     })
+// })
+
 test('should set current user to login Info username and logged in to true', () => {
-    const loginInfo = {username: 'mike'};
-    // eslint-disable-next-line react-hooks/rules-of-hooks
-    const iState = () => {useState(loginInfo)};
+    const iState = {
+        ...reducer(),
+        userList: [{username: 'mike', password:'pass'}]
+    };
     const state = reducer(iState, {
-        type: ON_LOGIN, loginInfo})
+        type: ON_LOGIN, loginInfo: {username: 'mike', password: 'pass'}})
     expect(state).toStrictEqual({
+        ...iState,
         currentUser: 'mike',
         loggedIn: true
     })
 })
 
+
+
 test('should logout user & return current user to null', () => {
-    const iState = reducer();
+    const iState = {...reducer()};
     const state = reducer(iState, {type: ON_LOGOUT})
     expect(state).toStrictEqual({...iState, currentUser: null})
 })
 
 test('should add thread to thread List', () => {
-    const iState = reducer();
+    const iState = {...reducer()};
     const state = reducer(iState, {
         type: ON_THREAD_ADD, thread: {
             id: 123,
@@ -116,8 +135,11 @@ test('should select a thread to edit with a given thread ID and return to state'
     const thread = [{id: 123}];
     // eslint-disable-next-line react-hooks/rules-of-hooks
     const iState = () => {useState(thread)};
-    const state = reducer(iState, {
-        type: ON_THREAD_SELECT_TO_EDIT, thread})
+    const state = {
+        ...reducer(iState, {
+            type: ON_THREAD_SELECT_TO_EDIT, thread
+        })
+    }
     expect(state).toStrictEqual({
         selectedThreadToEdit: [{id: 123}]
     })
@@ -157,29 +179,34 @@ test('should select a thread to edit with a given thread ID and return to state'
 //     })
 // })
 
-test('should return the thread if no edit is made', () => {
-    const threadList = [{id: 123}];
-    const thread = [{id: 123}];
-    // eslint-disable-next-line react-hooks/rules-of-hooks
-    const iState = () => {useState(threadList.map((thread) => {
-        if (thread.id === thread.id) {
-            return thread
-        } return threadList}))}
+test('should update the threadList with the action thread if the thread ids match', () => {
+    const iState = {
+        ...reducer(),
+        threadList: [{id: 123, title: 'dogs'}],
+    };
     const state = reducer(iState, {
-        type: ON_THREAD_EDIT, thread})
+        type: ON_THREAD_EDIT, thread: {id: 123, title: 'fish'}})
     expect(state).toStrictEqual({
-        chatList: [{id: 123}]
+        ...iState,
+        // threadList: [{id: 123}],
+        threadList: [{id: 123, title: 'fish'}],
     })
 })
 
 test('should filter out thread list where created thread is being passed', () => {
-    const threadList = [{id: 123}];
-    const thread = [{id: 123}];
-    const iState = () => {useState(threadList)};
+    const iState = {
+        ...reducer(),
+        currentUser: 'mike',
+        threadList: [
+            {id: 123, title: 'dogs', userCreated: 'mike'},
+            {id: 456, title: 'cats', userCreated: 'mike'}],
+    };
     const state = reducer(iState, {
-        type: ON_THREAD_DELETE, thread})
+        type: ON_THREAD_DELETE, thread: {id: 123, title: 'dogs', userCreated: 'mike'}})
     expect(state).toStrictEqual({
-        threadList: []
+        ...iState,
+        // threadList: [{id: 123}],
+        threadList: [{id: 456, title: 'cats', userCreated: 'mike'}],
     })
 })
 
@@ -253,29 +280,34 @@ test('should select a message to edit with a given thread ID and return to state
     })
 })
 
-test('should return the message if no edit is made', () => {
-    const chatList = [{id: 123}];
-    const message = [{id: 123}];
-    // eslint-disable-next-line react-hooks/rules-of-hooks
-    const iState = () => {useState(chatList.map((message) => {
-        if (message.id === message.id) {
-            return message
-        } return chatList}))}
+test('should return the same message if no edit is made', () => {
+    const iState = {
+        ...reducer(),
+        chatList: [{id: 123, message: 'dogs'}],
+    };
     const state = reducer(iState, {
-        type: ON_MESSAGE_EDIT, message})
+        type: ON_MESSAGE_EDIT, message: {id: 123, message: 'fish'}})
     expect(state).toStrictEqual({
-        chatList: [{id: 123}]
+        ...iState,
+        // threadList: [{id: 123}],
+        chatList: [{id: 123, message: 'fish'}],
     })
 })
 
-test('should filter out chat list where created message is being passed', () => {
-    const chatList = [{id: 123, userCreated: 'mike'}];
-    const message = {id: 123, userCreated: 'mike'};
-    const iState = () => {useState(message)};
+test('should filter out chat list where created message id is equal to chat list id', () => {
+    const iState = {
+        ...reducer(),
+        currentUser: 'mike',
+        chatList: [
+            {id: 123, message: 'dogs', userCreated: 'mike'},
+            {id: 456, title: 'cats', userCreated: 'mike'}],
+    };
     const state = reducer(iState, {
-        type: ON_MESSAGE_DELETE, chatList})
+        type: ON_MESSAGE_DELETE, message: {id: 123, message: 'dogs', userCreated: 'mike'}})
     expect(state).toStrictEqual({
-        chatList: []
+        ...iState,
+        // threadList: [{id: 123}],
+        chatList: [{id: 456, title: 'cats', userCreated: 'mike'}],
     })
 })
 
