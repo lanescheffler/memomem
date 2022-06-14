@@ -90,10 +90,18 @@ import './ThreadChat.css'
 
 export function ThreadChat(props) {
 
-    const dispatch = useDispatch();
+    const {onSubmit,
+        _useSelector = useSelector,
+        _useDispatch = useDispatch} = props
 
-    const userCreated = useSelector(state => state.currentUser)
-    const threadId = useSelector(state => state.selectedThread.id)
+    const state = _useSelector(state => state)
+
+    let {message} = props
+
+    const dispatch = _useDispatch();
+
+    const userCreated = state.currentUser
+    const threadId = state.selectedThread.id
 
     // const threadId = useSelector(state => state.selectedThread.id)
     // const filteredChat = chatList.filter(t => t.threadId)
@@ -123,7 +131,10 @@ export function ThreadChat(props) {
         // message
     }
 
-    const { onSubmit, message = newMessage, } = props
+    if (!message) {
+        message = newMessage
+    }
+
     const [formState, setFormState] = useState(message);
 
     function onSubmitMessage(e) {
