@@ -27,7 +27,7 @@ test( //this is an empty test that will always pass
 //     expect(button.tagName).toBe("BUTTON");
 // })
 
-test('should show a input with type text with placeholder "MESSAGE"', () => {
+test('should show a input with type text with placeholder "...reverseString(\'MeMoMeM\')"', () => {
 
     const dispatch = jest.fn();
     const _useSelector = (fn) => fn({selectedThread: {id: 123}, currentUser: 'mike'})

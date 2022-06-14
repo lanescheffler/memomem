@@ -19,7 +19,7 @@ test( //this is an empty test that will always pass
 test(
     'should initiate correct state',
     () => {
-        const state = reducer()
+        const state = {...reducer()}
         expect(state).toStrictEqual({
             userList: [],
             loggedIn: false,
@@ -118,7 +118,7 @@ test('should add thread to thread List', () => {
 })
 
 test( 'should return selectedThread & selectedMessageToEdit to null', () => {
-    const iState = reducer();
+    const iState = {...reducer()};
     const state = reducer(iState, {
         type: ON_THREAD_RELEASE, selectedThread: '123', selectedMessageToEdit: '456'
     })
@@ -240,7 +240,7 @@ test('should select a thread and return selected thread to state', () => {
     const thread = [{id: 123}];
     // eslint-disable-next-line react-hooks/rules-of-hooks
     const iState = () => {useState(thread)};
-    const state = reducer(iState, {type: ON_THREAD_CHAT, thread })
+    const state = {...reducer(iState, {type: ON_THREAD_CHAT, thread})}
     expect(state).toStrictEqual({
         selectedThread: [{id: 123}]
     })
@@ -248,15 +248,17 @@ test('should select a thread and return selected thread to state', () => {
 
 test('should add chat to chat List', () => {
     const iState = reducer();
-    const state = reducer(iState, {
-        type: ON_CHAT_ADD, message: {
-            id: 123,
-            threadId: 456,
-            message: 'hello',
-            date: 789,
-            userCreated: 'mike'
-        }
-    })
+    const state = {
+        ...reducer(iState, {
+            type: ON_CHAT_ADD, message: {
+                id: 123,
+                threadId: 456,
+                message: 'hello',
+                date: 789,
+                userCreated: 'mike'
+            }
+        })
+    }
     expect(state).toStrictEqual({
         ...iState,
         chatList: [{
@@ -273,8 +275,11 @@ test('should select a message to edit with a given thread ID and return to state
     const message = [{id: 123}];
     // eslint-disable-next-line react-hooks/rules-of-hooks
     const iState = () => {useState(message)};
-    const state = reducer(iState, {
-        type: ON_MESSAGE_SELECT_TO_EDIT, message})
+    const state = {
+        ...reducer(iState, {
+            type: ON_MESSAGE_SELECT_TO_EDIT, message
+        })
+    }
     expect(state).toStrictEqual({
         selectedMessageToEdit: [{id: 123}]
     })

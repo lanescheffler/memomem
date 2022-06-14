@@ -5,7 +5,8 @@ import './Sibebar.css'
 
 export function ThreadInfo(props) {
 
-    const {onSubmit, _useSelector = useSelector} = props
+    const {_useSelector = useSelector} = props
+    let {onSubmit} = props
     let {thread} = props
 
     const userCreated = _useSelector(state => state.currentUser)
