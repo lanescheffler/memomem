@@ -19,7 +19,7 @@ export const ON_THREAD_RELEASE = 'memos/ON_THREAD_RELEASE';
 
 const initState = {
 
-    userList: [{username: 'mike'}],
+    userList: [],
     loggedIn: false,
     currentUser: false,
     logOut: false, //idk if i need this.

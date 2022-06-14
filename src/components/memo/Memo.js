@@ -4,10 +4,10 @@ import {useDispatch} from "react-redux";
 import {ON_MESSAGE_DELETE, ON_MESSAGE_SELECT_TO_EDIT} from "../../modules/memos";
 import './Memo.css'
 
-export function Message({message}) {
+export function Message({message, _useDispatch = useDispatch}) {
 
 
-    const dispatch = useDispatch();
+    const dispatch = _useDispatch();
 
     function MouseOver(event) {
         event.target.style.background = 'azure';

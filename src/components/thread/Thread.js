@@ -4,10 +4,10 @@ import {useDispatch} from "react-redux";
 import {ON_THREAD_DELETE, ON_THREAD_SELECT_TO_EDIT, ON_THREAD_CHAT} from "../../modules/memos";
 import './Thread.css'
 
-export function Thread({thread}) {
+export function Thread({thread, _useDispatch = useDispatch}) {
 
 
-    const dispatch = useDispatch();
+    const dispatch = _useDispatch();
 
     function MouseOver(event) {
         event.target.style.background = 'azure';
