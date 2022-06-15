@@ -8,7 +8,6 @@ export function ThreadInfo(props) {
     const {_useSelector = useSelector} = props
     let {onSubmit} = props
     let {thread} = props
-
     const userCreated = _useSelector(state => state.currentUser)
     // const posts = useSelector(state => state.selectedThread.posts)
 
