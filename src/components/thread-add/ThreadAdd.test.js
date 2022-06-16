@@ -53,30 +53,25 @@ test( //this is an empty test that will always pass
 //
 //         const thread = {id: 123}
 //         const dispatch = jest.fn()
-//         let onSubmitProp;
-//         const ThreadInfo = ({onSubmit}) => {
-//             onSubmitProp = onSubmit
-//             return <div>thread</div>
+//         const _useDispatch = () => {
+//             return dispatch
 //         }
-//         render(<ThreadAdd _useDispatch={() => dispatch} _ThreadInfo={ThreadInfo}/>)
-//         expect(onSubmitProp).toHaveBeenCalledWith({
+//         const _ThreadInfo = () => {}
+//
+//         render(<ThreadAdd _useDispatch={_useDispatch} _ThreadInfo={_ThreadInfo}/>)
+//         expect(dispatch).toHaveBeenCalledWith({
 //             type: ON_THREAD_ADD, thread
 //         })
 // })
-
+//
 // test(
 //     'should pass ThreadInfo to ThreadAdd and dispatch a ON_THREAD_ADD event when clicked',
 //     () => {
 //
-//         let onSubmitProp;
-//         const _ThreadInfo = ({onSubmit}) => {
-//             onSubmitProp = onSubmit
-//             return <div>thread</div>
-//         }
+//         const _ThreadInfo = (props) => {props.onSubmit}
 //         const dispatch = jest.fn()
 //         const _useSelector = (fn) => fn({userCreated: 'mike'})
 //         render(<_ThreadInfo _useSelector={_useSelector} _useDispatch={() => dispatch}/>)
-//
 //         expect(_ThreadInfo).toHaveBeenCalledWith({type: ON_THREAD_ADD,})
 //     }
 // )
@@ -103,15 +98,18 @@ test( //this is an empty test that will always pass
 //     expect(onSubmitProp).toHaveBeenCalledWith({type: ON_THREAD_ADD});
 // })
 
-// test('should pass ThreadInfo to onSubmit function that dispatches ON_THREAD_ADD' +
-//     '& Returns thread', () => {
-//
-//     const dispatch = jest.fn
-//     const thread = {id: 123, userCreated: 'mike'}
-//     const iState = () => {useState(thread)};
-//     const _ThreadInfo = iState
-//
-//     render(<ThreadAdd _useDispatch={dispatch} _ThreadInfo={_ThreadInfo}/>)
-//     expect(dispatch).toHaveBeenCalledWith(ON_THREAD_ADD)
-//
-// })
+test('should pass ThreadInfo to onSubmit function that dispatches ON_THREAD_ADD' +
+    '& Returns thread', () => {
+
+    const dispatch = jest.fn()
+    const _ThreadInfo = ({onSubmit}) => {
+        onSubmit()
+    }
+
+    render(<ThreadAdd _useDispatch={() => {return dispatch}}  _ThreadInfo={_ThreadInfo}/>)
+    expect(dispatch).toHaveBeenCalledWith({
+        type: ON_THREAD_ADD,
+        thread: undefined
+    })
+
+})
