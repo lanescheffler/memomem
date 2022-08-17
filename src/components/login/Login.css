@@ -34,3 +34,13 @@
     font-family: "Arial Black";
     border-radius: 2px;
 }
+
+.regiMessage {
+    position: absolute;
+    display: flex;
+    flex-direction: row;
+    top: 59%;
+    left: 50%;
+    font-family: "Arial Black";
+    font-size:15px;
+}

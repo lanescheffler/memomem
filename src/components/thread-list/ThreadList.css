@@ -1,11 +1,17 @@
 .pubHdr1 {
+
+    display: inline-flex;
     position: absolute;
-    top: 25.5%;
-    left: 53%;
+    justify-content: stretch;
+    top: 28%;
+    left: 52%;
 }
 
 .privHdr1{
+
+    display: inline-flex;
     position: absolute;
-    top: 66%;
-    left: 35%;
+    justify-content: stretch;
+    top: 66.5%;
+    left: 36%;
 }

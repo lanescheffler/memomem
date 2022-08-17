@@ -1,18 +1,24 @@
 import {useState} from "react";
 import {v4 as uuidv4} from 'uuid';
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import './Sibebar.css'
+import {initiateCreateThread, editThread} from "../../modules/memos";
 
 export function ThreadInfo(props) {
 
+    const dispatch = useDispatch()
     const {_useSelector = useSelector} = props
     let {onSubmit} = props
     let {thread} = props
     const userCreated = _useSelector(state => state.currentUser)
+    const threadEditing =_useSelector(state => state.threadEditing)
+    let selectedThreadToEdit = _useSelector(state => state.selectedThreadToEdit)
+    // const threadList = _useSelector(state => state.threadList)
+    // const selectedThread = threadList.filter(s => s.id === thread.id)
     // const posts = useSelector(state => state.selectedThread.posts)
 
     const newThread = {
-        id: new Date().getMilliseconds(),
+        // id: new Date().getMilliseconds(),
         userCreated: userCreated,
         invitedUser: '',
         title: '',
@@ -29,8 +35,15 @@ export function ThreadInfo(props) {
 
     function onFormSubmit(e) {
         e.preventDefault()
-        onSubmit({...formState})
-        setFormState(newThread);
+        //dispatch
+        if(!threadEditing) {
+            dispatch(initiateCreateThread(formState))
+            setFormState(newThread);
+        } else {
+            console.log(thread.id)
+            dispatch(editThread(formState, thread.id))
+        }
+        // dispatch(getThreadList())
     }
 
     function onTitleChange(e) {
@@ -63,7 +76,7 @@ export function ThreadInfo(props) {
 
     return <div className="sidebar">
         <form onSubmit={onFormSubmit} className={"thread__form"}>
-            <input className={"thread__input"} onChange={onTitleChange}
+            <input required className={"thread__input"} onChange={onTitleChange}
                    value={formState.title} type={'text'} placeholder={"THREAD TITLE"}/>
             <input className={"thread__input"} onChange={onInviteChange}
                    value={formState.invitedUser} type={'text'} placeholder={"INVITE USER"}/>

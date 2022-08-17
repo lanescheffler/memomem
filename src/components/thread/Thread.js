@@ -1,25 +1,55 @@
 // import {Button, Card} from "react-bootstrap";
-import {BsFillCheckCircleFill, BsFillCircleFill, BsFillGearFill, BsFillTrashFill} from "react-icons/bs";
-import {useDispatch} from "react-redux";
-import {ON_THREAD_DELETE, ON_THREAD_SELECT_TO_EDIT, ON_THREAD_CHAT} from "../../modules/memos";
+// import {BsFillCheckCircleFill, BsFillCircleFill, BsFillGearFill, BsFillTrashFill} from "react-icons/bs";
+import {useDispatch, useSelector} from "react-redux";
+import {
+    ON_THREAD_DELETE,
+    ON_THREAD_SELECT_TO_EDIT,
+    ON_THREAD_CHAT,
+    getThreadList,
+    deletingThread,
+    editThread
+} from "../../modules/memos";
 import './Thread.css'
+import {useEffect} from "react";
 
 export function Thread({thread, _useDispatch = useDispatch}) {
 
 
     const dispatch = _useDispatch();
+    const threadList = useSelector(state => state.threadList)
+    const currentUser = useSelector(state => state.currentUser)
+
+    useEffect(() => {
+        dispatch(getThreadList())
+    }, [])
 
     function MouseOver(event) {
         event.target.style.background = 'azure';
     }
-    function MouseOut(event){
-        event.target.style.background="";
+
+    function MouseOut(event) {
+        event.target.style.background = "";
+    }
+
+    // function editThread(e) {
+    //     const selectedThreadToEdit = threadList.filter(s => s.id === thread.id && s.userCreated === thread.userCreated)
+    //     dispatch({type: ON_THREAD_SELECT_TO_EDIT, selectedThreadToEdit: selectedThreadToEdit})
+    //
+    // }
+
+    function deleteThread(e) {
+        if (currentUser !== thread.userCreated) {
+            alert("you did not create this thread...")
+        } else {
+            const selectedThread = threadList.filter(s => s.id === thread.id)
+            dispatch(deletingThread(selectedThread[0].id))
+        }
     }
 
     return <div className="thread">
         about:
-        [{thread.title}] ...on
-        {thread.date?.toString().substring(3, 15).toLowerCase()} ... with {thread.userCreated} &... {thread.invitedUser}
+        [{thread.title}] ...on_
+        {thread.date?.toString().substring(0, 10).toLowerCase()} ... with {thread.userCreated} &... {thread.invitedUser}
         <br/>
         {/*PUBLIC POSTS:*/}
         {/*{thread.posts}*/}
@@ -29,11 +59,14 @@ export function Thread({thread, _useDispatch = useDispatch}) {
             |Chat|
         </button>
         <button className={'thread__btn'} onMouseOver={MouseOver} onMouseOut={MouseOut}
+            // onClick={(e) => {editThread(e)}}>
                 onClick={() => dispatch({type: ON_THREAD_SELECT_TO_EDIT, thread: thread})}>
             |Edit|
         </button>
         <button className={'thread__btn2'}
-                onClick={() => dispatch({type: ON_THREAD_DELETE, thread})}>
+                onClick={(e) => {
+                    deleteThread(e)
+                }}>
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="16" fill="currentColor" className="bi bi-trash"
                  viewBox="0 0 16 16" onMouseOver={MouseOver} onMouseOut={MouseOut}>
                 <path

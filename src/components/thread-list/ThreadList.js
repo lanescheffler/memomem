@@ -1,12 +1,23 @@
 import {Thread} from "../thread/Thread";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {Button, Dropdown} from "react-bootstrap";
 import './ThreadList.css'
+import {useEffect} from "react";
+import {getThreadList} from "../../modules/memos";
 
 
 export function ThreadList({onEditSelect, onDelete, _Thread = Thread}) {
 
     const threadList = useSelector(state => state.threadList)
+    const dispatch = useDispatch()
+
+    useEffect(() => {
+        const interval = setInterval(() => {
+            dispatch(getThreadList());
+        }, 50);
+        return () => clearInterval(interval);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [])
 
     function sortThreadList(a, b) {
         if (a.title < b.title) return -1;
