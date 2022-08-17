@@ -243,7 +243,7 @@ export function reducer(state = initState, action) {
                 alert('you did not create this message...')
                 return {...state}
             }
-            // current user has to equal userCreated
+            // current user has to equal userCreated!!!!
             return {
                 ...state,
                 chatList: state.chatList.filter(createdMessage => createdMessage.id !== action.message.id)
